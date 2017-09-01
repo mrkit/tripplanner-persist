@@ -48,12 +48,21 @@ $(function(){
           if(days.length === 1){
             return;
           }
-          //TODO - remove the day on server
-          days = days.filter(function(day, _idx){
-            return _idx !== idx;
-          });
-          idx = 0;
-          renderDayPicker();
+        
+          $.ajax({
+            url: `/days/${idx}`,
+            type: 'DELETE', 
+            success: function(result){
+              console.log(result);
+              //TODO - remove the day on server
+              days = days.filter(function(day, _idx){
+                return _idx !== idx;
+              });
+            idx = 0;
+            renderDayPicker();
+            }
+          })
+          
         }
 
         var selectDay = function(_idx){

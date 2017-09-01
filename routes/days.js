@@ -26,6 +26,11 @@ app.post('/', (req, res, next)=> {
 
 app.delete('/:id', (req, res, next)=> {
   //TODO - implement
+  let id = req.params.id
+  Day.destroy({ where: { id: id }})
+  .then( () => {
+//    res.send(id)
+  })
 });
 
 //TO DO - total of six routes, add and remove hotels, restaurants, activities for a day
